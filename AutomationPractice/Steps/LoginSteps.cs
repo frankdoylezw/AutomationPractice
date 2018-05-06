@@ -6,6 +6,7 @@ using TechTalk.SpecFlow;
 using NUnit;
 using System.Threading;
 using NUnit.Framework;
+using OpenQA.Selenium.Firefox;
 
 namespace AutomationPractice.Steps
 {
@@ -14,17 +15,22 @@ namespace AutomationPractice.Steps
     [Binding]
     public class LoginSteps
     {
-        ChromeDriver _driver;
+        IWebDriver _driver;
+        //ChromeDriver _driver;
+        IJavaScriptExecutor JSDriver;
         WebDriverWait wait;
-        string username;
-        string password;
 
         [BeforeScenario]
         public void SetUp()
         {
             var VendorDirectory = System.IO.Directory.GetParent(System.AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.FullName + @"\Vendor";
-            var Service = ChromeDriverService.CreateDefaultService(VendorDirectory);
-            _driver = new ChromeDriver(Service);
+
+            //var Service = ChromeDriverService.CreateDefaultService(VendorDirectory);
+            var Service = FirefoxDriverService.CreateDefaultService(VendorDirectory);
+            // _driver = new ChromeDriver(Service);
+            _driver = new FirefoxDriver(Service);
+
+            JSDriver = (IJavaScriptExecutor)_driver;
             wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
         }
 
@@ -38,6 +44,7 @@ namespace AutomationPractice.Steps
         public void GivenThatIAmOnTheInternetLoginPage()
         {
             _driver.Navigate().GoToUrl("http://the-internet.herokuapp.com/login");
+
         }
 
         [When(@"I login with valid credentials")]
@@ -51,7 +58,6 @@ namespace AutomationPractice.Steps
         [Then(@"I see the Secure Area page")]
         public void ThenISeeTheSecureAreaPage()
         {
-
             string welcomemessage = _driver.FindElement(By.TagName("body")).Text;
             Assert.That(welcomemessage.Contains("Welcome"));
         }
