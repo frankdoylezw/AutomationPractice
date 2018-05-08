@@ -17,6 +17,8 @@ namespace AutomationPractice.PageObjects
         By SuccessMessage = By.TagName("body");
         By InvalidUsernameMessage = By.CssSelector(".flash.error");
 
+        //THIS IS TEST CODE
+
         public LoginPage (IWebDriver driver)
         {
             Driver = driver;

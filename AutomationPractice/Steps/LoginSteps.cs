@@ -46,7 +46,6 @@ namespace AutomationPractice.Steps
         public void GivenThatIAmOnTheInternetLoginPage()
         {
             Assert.That(Driver.FindElement(By.TagName("body")).Text.Contains("This is where you can log into the secure area"));
-            //Driver.Navigate().GoToUrl(Driver.Url + "/login");
 
         }
 
@@ -54,17 +53,14 @@ namespace AutomationPractice.Steps
         public void WhenILoginWithValidCredentials()
         {
             Login.With("tomsmith", "SuperSecretPassword!");
-            //Driver.FindElement(By.Id("username")).SendKeys("tomsmith");
-            //Driver.FindElement(By.Id("password")).SendKeys("SuperSecretPassword!");
-            //Driver.FindElement(By.CssSelector("button[type='submit']")).Click();
+
         }
 
         [Then(@"I see the Secure Area page")]
         public void ThenISeeTheSecureAreaPage()
         {
             Assert.That(Login.SuccessMessagePresent);
-            //string welcomemessage = Driver.FindElement(By.TagName("body")).Text;
-            //Assert.That(welcomemessage.Contains("Welcome"));
+
         }
 
         [When(@"I login with invalid credentials")]
@@ -72,18 +68,13 @@ namespace AutomationPractice.Steps
         {
             Login.With("invalidusername", "invalidpassword");
 
-            //Driver.FindElement(By.Id("username")).SendKeys("invalidusername");
-            //Driver.FindElement(By.Id("password")).SendKeys("invalidpassword");
-            //Driver.FindElement(By.CssSelector("button[type='submit']")).Click();
-
         }
 
         [Then(@"I should see an invalid username message")]
         public void ThenIShouldSeeAnInvalidUsernameMessage()
         {
             Assert.That(Login.InvalidUsernameMessagePresent);
-            //string usernameMessage = Driver.FindElement(By.TagName("body")).Text;
-            //Assert.That(usernameMessage.Contains("Your username is invalid!"));
+
         }
 
     }
