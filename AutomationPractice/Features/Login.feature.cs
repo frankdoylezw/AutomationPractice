@@ -79,6 +79,23 @@ testRunner.Then("I see the Secure Area page", ((string)(null)), ((TechTalk.SpecF
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Login using incorrect credentials")]
+        public virtual void LoginUsingIncorrectCredentials()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Login using incorrect credentials", ((string[])(null)));
+#line 8
+this.ScenarioSetup(scenarioInfo);
+#line 10
+testRunner.Given("that I am on TheInternet login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 11
+testRunner.When("I login with invalid credentials", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 12
+testRunner.Then("I should see an invalid username message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore
