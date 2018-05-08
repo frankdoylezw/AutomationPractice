@@ -10,13 +10,16 @@ namespace AutomationPractice.PageObjects
 {
     class LoginPage
     {
+
+        //Properties and Fields
         IWebDriver Driver;
         By UsernameInput = By.Id("username");
         By PasswordInput = By.Id("password");
         By SubmitButton = By.CssSelector("button[type='submit']");
         By SuccessMessage = By.TagName("body");
         By InvalidUsernameMessage = By.CssSelector(".flash.error");
-
+        
+        //Constructor
         public LoginPage (IWebDriver driver)
         {
             Driver = driver;
