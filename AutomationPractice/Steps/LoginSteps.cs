@@ -9,6 +9,7 @@ using NUnit.Framework;
 using OpenQA.Selenium.Firefox;
 using System.Configuration;
 using AutomationPractice.PageObjects;
+using AutomationPractice.Features;
 
 namespace AutomationPractice.Steps
 {
@@ -17,35 +18,20 @@ namespace AutomationPractice.Steps
     [Binding]
     public class LoginSteps
     {
-        IWebDriver Driver;
-        //ChromeDriver _driver;
-        WebDriverWait wait;
+        private readonly IWebDriver _driver;
         LoginPage Login;
 
-        [BeforeScenario]
-        public void SetUp()
+        public LoginSteps()
         {
-            var VendorDirectory = System.IO.Directory.GetParent(System.AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.FullName + @"\Vendor";
-
-            //var Service = ChromeDriverService.CreateDefaultService(VendorDirectory);
-            var Service = FirefoxDriverService.CreateDefaultService(VendorDirectory);
-            // _driver = new ChromeDriver(Service);
-            Driver = new FirefoxDriver(Service);
-            Driver.Url = ConfigurationManager.AppSettings["baseURL"];
-            Login = new LoginPage(Driver);
-            wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
-        }
-
-        [AfterScenario]
-        public void TearDown()
-        {
-            Driver.Close();
+            _driver = ScenarioContext.Current.Get<IWebDriver>("currentDriver");
+            Login = new LoginPage(_driver);
         }
 
         [Given(@"that I am on TheInternet login page")]
         public void GivenThatIAmOnTheInternetLoginPage()
         {
-            Assert.That(Driver.FindElement(By.TagName("body")).Text.Contains("This is where you can log into the secure area"));
+
+            Assert.That(_driver.FindElement(By.TagName("body")).Text.Contains("This is where you can log into the secure area"));
 
         }
 

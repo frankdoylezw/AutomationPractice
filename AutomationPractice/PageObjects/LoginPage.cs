@@ -12,7 +12,7 @@ namespace AutomationPractice.PageObjects
     {
 
         //Properties and Fields
-        IWebDriver Driver;
+        IWebDriver _driver;
         By UsernameInput = By.Id("username");
         By PasswordInput = By.Id("password");
         By SubmitButton = By.CssSelector("button[type='submit']");
@@ -20,33 +20,33 @@ namespace AutomationPractice.PageObjects
         By InvalidUsernameMessage = By.CssSelector(".flash.error");
         
         //Constructor
-        public LoginPage (IWebDriver driver)
+        public LoginPage (IWebDriver Driver)
         {
-            Driver = driver;
-            driver.Url = ConfigurationManager.AppSettings["baseURL"];
-            Driver.Navigate().GoToUrl(driver.Url + "/login");
+            _driver = Driver;
+            _driver.Navigate().GoToUrl("http://the-internet.herokuapp.com/login");
+
 
         }
 
         public void With(string username, string password)
         {
-            Driver.FindElement(UsernameInput).SendKeys(username);
-            Driver.FindElement(PasswordInput).SendKeys(password);
-            Driver.FindElement(SubmitButton).Click();
+            _driver.FindElement(UsernameInput).SendKeys(username);
+            _driver.FindElement(PasswordInput).SendKeys(password);
+            _driver.FindElement(SubmitButton).Click();
             System.Threading.Thread.Sleep(1000);
 
 
         }
         public bool SuccessMessagePresent()
         {
-            return Driver.FindElement(SuccessMessage).Text.Contains("Welcome");
+            return _driver.FindElement(SuccessMessage).Text.Contains("Welcome");
 
 
         }
 
         public bool InvalidUsernameMessagePresent()
         {
-            return Driver.FindElement(InvalidUsernameMessage).Displayed;
+            return _driver.FindElement(InvalidUsernameMessage).Displayed;
 
         }
 

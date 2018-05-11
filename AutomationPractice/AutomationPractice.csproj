@@ -73,10 +73,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Features\Hooks.cs" />
+    <Compile Include="Steps\DropdownSteps.cs" />
     <Compile Include="Features\Login.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Login.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Dropdown.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Dropdown.feature</DependentUpon>
     </Compile>
     <Compile Include="PageObjects\LoginPage.cs" />
     <Compile Include="Program.cs" />
@@ -88,6 +95,10 @@
     <None Include="Features\Login.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Login.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Dropdown.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Dropdown.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
