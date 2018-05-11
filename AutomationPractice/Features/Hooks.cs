@@ -34,7 +34,7 @@ namespace AutomationPractice.Features
         [AfterScenario]
         public void TearDown()
         {
-            _driver.Close();
+            _driver.Quit();
         }
     }
 }
