@@ -14,20 +14,21 @@ namespace AutomationPractice
     public class DropdownSteps
     {
         private readonly IWebDriver _driver;
-        private string dropdownText;
-        WebDriverWait wait;
+        private string _dropdownText;
+        WebDriverWait _wait;
 
+        
         public DropdownSteps()
         {
             _driver = ScenarioContext.Current.Get<IWebDriver>("currentDriver");
-            wait = ScenarioContext.Current.Get<WebDriverWait>("currentwait");
+            _wait = ScenarioContext.Current.Get<WebDriverWait>("currentwait");
         }
 
         [Given(@"I am on the dropdown example page")]
         public void GivenIAmOnTheDropdownExamplePage()
         {
             _driver.Navigate().GoToUrl("http://the-internet.herokuapp.com/dropdown");
-            wait.Until(ExpectedConditions.ElementExists(By.Id("dropdown")));
+            _wait.Until(ExpectedConditions.ElementExists(By.Id("dropdown")));
             Assert.That(_driver.FindElement(By.Id("dropdown")).Text.Contains("Please select"));
         }
         
@@ -41,10 +42,9 @@ namespace AutomationPractice
         [Then(@"Option (.*) should be selected")]
         public void ThenOptionShouldBeSelected(int dropdownoption)
         {
-
-            dropdownText = dropdownoption.ToString();
+            _dropdownText = dropdownoption.ToString();
             SelectElement Dropdown = new SelectElement(_driver.FindElement(By.Id("dropdown")));
-            Assert.That(Dropdown.SelectedOption.Text.Equals("Option "  + dropdownText));
+            Assert.That(Dropdown.SelectedOption.Text.Equals("Option "  + _dropdownText));
 
 
         }
