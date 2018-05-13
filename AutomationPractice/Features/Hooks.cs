@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 using System;
@@ -20,10 +21,14 @@ namespace AutomationPractice.Features
         public void Setup()
         {
             var VendorDirectory = System.IO.Directory.GetParent(System.AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.FullName + @"\Vendor";
-            //var Service = ChromeDriverService.CreateDefaultService(VendorDirectory);
-            var Service = FirefoxDriverService.CreateDefaultService(VendorDirectory);
-            // _driver = new ChromeDriver(Service);
-            _driver = new FirefoxDriver(Service);
+            var Service = ChromeDriverService.CreateDefaultService(VendorDirectory);
+            //var Service = FirefoxDriverService.CreateDefaultService(VendorDirectory);
+            ChromeOptions options = new ChromeOptions();
+            options.AddArgument("disable-infobars");
+            options.AddArgument("start-maximized");
+            _driver = new ChromeDriver(Service, options);
+
+            //_driver = new FirefoxDriver(Service);
             //Driver.Url = ConfigurationManager.AppSettings["baseURL"];
             wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
             ScenarioContext.Current.Add("currentDriver", _driver);

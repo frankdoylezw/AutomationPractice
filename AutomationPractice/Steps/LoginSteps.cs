@@ -1,15 +1,7 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.UI;
-using System;
 using TechTalk.SpecFlow;
-using NUnit;
-using System.Threading;
 using NUnit.Framework;
-using OpenQA.Selenium.Firefox;
-using System.Configuration;
 using AutomationPractice.PageObjects;
-using AutomationPractice.Features;
 
 namespace AutomationPractice.Steps
 {

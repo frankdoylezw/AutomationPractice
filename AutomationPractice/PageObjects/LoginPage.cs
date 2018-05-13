@@ -18,9 +18,9 @@ namespace AutomationPractice.PageObjects
         By SubmitButton = By.CssSelector("button[type='submit']");
         By SuccessMessage = By.TagName("body");
         By InvalidUsernameMessage = By.CssSelector(".flash.error");
-        
+
         //Constructor
-        public LoginPage (IWebDriver Driver)
+        public LoginPage(IWebDriver Driver)
         {
             _driver = Driver;
             _driver.Navigate().GoToUrl("http://the-internet.herokuapp.com/login");
